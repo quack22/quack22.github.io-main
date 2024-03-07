@@ -6,6 +6,7 @@
 }
 
 body {
+    background: black;
     color: white;
 }
 
@@ -45,7 +46,7 @@ body {
 
 .home {
     height: 100vh;
-    background: url('img/aler.jpg') no-repeat;
+    background: url("aler.jpg") no-repeat;
     background-size: cover;
     background-position: center;
     display: flex;
@@ -178,4 +179,14 @@ body {
 
 .home-sci a:hover:before {
     width: 100%;
+}
+
+.home-imgHover {
+    position: absolute;
+    top: 0;
+    right: 30px;
+    width: 500px;
+    height: 100%;
+    background: transparent;
+    border: 2px solid red;
 }
