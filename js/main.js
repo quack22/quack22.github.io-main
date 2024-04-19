@@ -18,7 +18,7 @@ window.onscroll = () => {
         let height = sec.offsetHeight;
         let id = sec.getAttribute('id');
 
-        if(top >= offset && top < offset + height) {
+        if (top >= offset && top < offset + height) {
             // active navbar links
             navLinks.forEach(links => {
                 links.classList.remove('active');
@@ -40,11 +40,30 @@ window.onscroll = () => {
 
     // remove toggle icon and navbar when click navbar links (scroll)
     menuIcon.classList.remove('bx-x');
-    navbar.classList.remove('active'); 
-    
+    navbar.classList.remove('active');
+
     // animation footer on scroll
     let footer = document.querySelector('footer');
 
-    footer.classList.toggle('show-animate', this.innerHeight + this.scrollY >= document.scrollingElement.
-    scrollHeight);
+    footer.classList.toggle('show-animate', this.innerHeight + this.scrollY >= document.scrollingElement.scrollHeight);
 }
+
+// fetch and display JSON data as table
+// fetch and display JSON data as table
+fetch('news_data.json')
+    .then(response => response.json())
+    .then(data => {
+        // Remove the last object containing "scraping_time"
+        data.pop();
+
+        const table = document.getElementById('news-table').getElementsByTagName('tbody')[0];
+
+        data.forEach((item, index) => {
+            const row = table.insertRow();
+            row.insertCell(0).textContent = index + 1;
+            row.insertCell(1).textContent = item.title;
+            row.insertCell(2).textContent = item.category;
+            row.insertCell(3).textContent = item.publish_time;
+        });
+    })
+    .catch(error => console.error('Error:', error));

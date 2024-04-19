@@ -270,6 +270,24 @@
     </div>
 </section>
 
+<!-- JSON Table Section -->
+<section class="json-table">
+    <h2 class="heading">News Table</h2>
+    <table id="news-table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Publish Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table content will be inserted here -->
+        </tbody>
+    </table>
+</section>
+
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
@@ -318,6 +336,30 @@
             </div>
         </form>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // fetch and display JSON data as table
+            fetch('news_data.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Remove the last object containing "scraping_time"
+                    data.pop();
+    
+                    const table = document.getElementById('news-table').getElementsByTagName('tbody')[0];
+    
+                    data.forEach((item, index) => {
+                        const row = table.insertRow();
+                        row.insertCell(0).textContent = index + 1;
+                        row.insertCell(1).textContent = item.title;
+                        row.insertCell(2).textContent = item.category;
+                        row.insertCell(3).textContent = item.publish_time;
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+
 
     <!-- Footer -->
     <footer class="footer">

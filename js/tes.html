@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News Table</title>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+</head>
+<body>
+<h2>News Table</h2>
+<table id="newsTable">
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Title</th>
+            <th>Publish Time</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script>
+    fetch('news_data.json')
+    .then(response => response.json())
+    .then(data => {
+        const tableBody = document.querySelector('#newsTable tbody');
+        data.forEach(news => {
+            const row = tableBody.insertRow();
+            row.insertCell().textContent = news.category;
+            row.insertCell().textContent = news.title;
+            row.insertCell().textContent = news.publish_time;
+        });
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+</body>
+</html>
