@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>News</title>
+</head>
+<body>
+    <!-- News Section -->
+    <section class="news" id="news">
+        <h2 class="heading">Latest <span>News</span></h2>
+        <div class="news-container"></div>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('hasil.json')
+                .then(response => response.json())
+                .then(data => {
+                    const newsContainer = document.querySelector('.news-container');
+                    data.forEach(newsItem => {
+                        const newsDiv = document.createElement('div');
+                        newsDiv.classList.add('news-item');
+                        newsDiv.innerHTML = `
+                            <h3>${newsItem.Judul}</h3>
+                            <p><strong>Kategori:</strong> ${newsItem.Kategori}</p>
+                            <p><strong>Publish:</strong> ${newsItem.Publish}</p>
+                            <p><strong>Scraping:</strong> ${newsItem.Scraping}</p>
+                            <a href="${newsItem.Link}" target="_blank">Read more</a>
+                        `;
+                        newsContainer.appendChild(newsDiv);
+                    });
+                })
+                .catch(error => console.error('Error loading news:', error));
+        });
+    </script>
+</body>
+</html>

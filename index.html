@@ -24,7 +24,7 @@
             <a href="#about">About</a>
             <a href="#education">Education</a>
             <a href="#skills">Skills</a>
-            <a href="#news">News</a>
+            <a href="news.html">News</a>
             <a href="#contact">Contact</a>
 
             <span class="active-nav"></span>
@@ -277,7 +277,6 @@
         <div class="news-container"></div>
     </section>
 
-
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <h2 class="heading">Contact <span>Me!</span><span class="animate scroll" style="--i:1;"></span></h2>
@@ -326,29 +325,6 @@
         </form>
     </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // fetch and display JSON data as table
-            fetch('news_data.json')
-                .then(response => response.json())
-                .then(data => {
-                    // Remove the last object containing "scraping_time"
-                    data.pop();
-    
-                    const table = document.getElementById('news-table').getElementsByTagName('tbody')[0];
-    
-                    data.forEach((item, index) => {
-                        const row = table.insertRow();
-                        row.insertCell(0).textContent = index + 1;
-                        row.insertCell(1).textContent = item.title;
-                        row.insertCell(2).textContent = item.category;
-                        row.insertCell(3).textContent = item.publish_time;
-                    });
-                })
-                .catch(error => console.error('Error:', error));
-        });
-    </script>
-
 
     <!-- Footer -->
     <footer class="footer">
@@ -365,7 +341,7 @@
         </div>
     </footer>
     
-    <script src="js/main.js"></script>
+    <script src="js/main.js"></script>    
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             fetch('hasil.json')
@@ -387,7 +363,7 @@
                 })
                 .catch(error => console.error('Error loading news:', error));
         });
-    </script>    
+    </script>
 </body>
 
 </html>
